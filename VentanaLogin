@@ -1,0 +1,91 @@
+package prueba_obli;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class VentanaLogin extends JFrame implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private List<Usuario> usuarios;
+    private JComboBox<String> comboBoxRol;
+    private JTextField campoID;
+    private JPasswordField campoContraseña;
+    private JButton botonIniciarSesion;
+    private JPanel panel;
+     
+
+    
+    
+    public VentanaLogin(String titulo) {
+        setTitle(titulo);
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        usuarios = new ArrayList<>();
+        usuarios.add(new Usuario("1", "contrseña1", "Docente"));
+        usuarios.add(new Usuario("2", "contraseña2", "Estudiante"));
+
+        // Inicializar componentes Swing
+        comboBoxRol = new JComboBox<>(new String[]{"Docente", "Estudiante"});
+        campoID = new JTextField(20);
+        campoContraseña = new JPasswordField(20);
+        botonIniciarSesion = new JButton("Iniciar Sesión");
+        panel = new JPanel(new GridLayout(4, 2));
+
+        // Agregar componentes al panel
+        panel.add(new JLabel("Rol:"));
+        panel.add(comboBoxRol);
+        panel.add(new JLabel("ID:"));
+        panel.add(campoID);
+        panel.add(new JLabel("Contraseña:"));
+        panel.add(campoContraseña);
+        panel.add(new JLabel()); // Espacio en blanco
+        panel.add(botonIniciarSesion);
+
+        botonIniciarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String rolSeleccionado = (String) comboBoxRol.getSelectedItem();
+                String id = campoID.getText();
+                String contraseña = new String(campoContraseña.getPassword());
+                if (validarUsuario(rolSeleccionado, id, contraseña)) {
+                    abrirVentanaPrincipal(rolSeleccionado, id);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Credenciales incorrectas");
+                }
+            }
+        });
+
+        // Agregar el panel a la ventana
+        add(panel);
+    }
+
+    private boolean validarUsuario(String rol, String id, String contraseña) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getRol().equals(rol) && usuario.getId().equals(id) && usuario.getContraseña().equals(contraseña)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void abrirVentanaPrincipal(String rol, String id) {
+        SwingUtilities.invokeLater(() -> {
+            VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(id, rol); // Cambia el orden de los argumentos si es necesario
+            ventanaPrincipal.setVisible(true);
+            dispose();
+        });
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            VentanaLogin ventana = new VentanaLogin("Iniciar Sesión");
+            ventana.setVisible(true);
+        });
+    }
+}
