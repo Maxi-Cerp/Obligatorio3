@@ -1,0 +1,55 @@
+package prueba_obli;
+
+public class Recurso {
+    private int id;
+    private String nombre;
+    private String descripcion;
+    private boolean disponible;
+
+
+    public Recurso(int id, String nombre, String descripcion, boolean disponible) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.disponible = disponible;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public boolean getDisponible() {
+        return disponible;
+    }
+
+ 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+}
+
+
+
+
+
