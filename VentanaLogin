@@ -1,0 +1,58 @@
+package prueba_obli;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class VentanaLogin extends JFrame {
+    private JComboBox<String> comboBoxRol;
+    private JTextField campoID;
+    private JPasswordField campoContraseña;
+
+    public VentanaLogin(String titulo) {
+        setTitle(titulo);
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Inicializar componentes Swing
+        comboBoxRol = new JComboBox<>(new String[]{"Docente", "Estudiante"});
+        campoID = new JTextField(20);
+        campoContraseña = new JPasswordField(20);
+
+        JButton botonIniciarSesion = new JButton("Iniciar Sesión");
+        botonIniciarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                abrirVentanaPrincipal();
+            }
+        });
+
+        JPanel panel = new JPanel(new GridLayout(4, 2));
+        panel.add(new JLabel("Rol:"));
+        panel.add(comboBoxRol);
+        panel.add(new JLabel("ID:"));
+        panel.add(campoID);
+        panel.add(new JLabel("Contraseña:"));
+        panel.add(campoContraseña);
+        panel.add(new JLabel()); // Espacio en blanco
+        panel.add(botonIniciarSesion);
+
+        add(panel);
+    }
+
+    private void abrirVentanaPrincipal() {
+        SwingUtilities.invokeLater(() -> {
+            VentanaPrincipalNueva ventanaPrincipalNueva = new VentanaPrincipalNueva();
+            ventanaPrincipalNueva.setVisible(true);
+            dispose();
+        });
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            VentanaLogin ventana = new VentanaLogin("Iniciar Sesión");
+            ventana.setVisible(true);
+        });
+    }
+}
