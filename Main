@@ -1,0 +1,12 @@
+package prueba_obli;
+
+public class Main {
+    public static void main(String[] args) {
+        // Crear una instancia de VentanaBase
+        VentanaLogin ventana = new VentanaLogin("Mi Ventana");
+
+        // Hacer visible la ventana
+        ventana.setVisible(true);
+        
+    }
+}
