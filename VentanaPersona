@@ -1,0 +1,146 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class VentanaPersona extends JFrame {
+    private JPanel contentPane;
+    private JTextField txtID;
+    private JTextField txtDescripcion;
+    private JTextField txtDisponible;
+    private JTable table;
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    VentanaPersona frame = new VentanaPersona();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public VentanaPersona() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 729, 273);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        JLabel lblID = new JLabel("ID");
+        lblID.setBounds(10, 41, 65, 23);
+        contentPane.add(lblID);
+
+        JLabel lblDescripcion = new JLabel("Descripción");
+        lblDescripcion.setBounds(10, 69, 75, 14);
+        contentPane.add(lblDescripcion);
+
+        JLabel lblDisponible = new JLabel("Disponible");
+        lblDisponible.setBounds(10, 94, 65, 14);
+        contentPane.add(lblDisponible);
+
+        txtID = new JTextField();
+        txtID.setBounds(80, 42, 96, 20);
+        contentPane.add(txtID);
+        txtID.setColumns(10);
+
+        txtDescripcion = new JTextField();
+        txtDescripcion.setBounds(80, 66, 96, 20);
+        contentPane.add(txtDescripcion);
+        txtDescripcion.setColumns(10);
+
+        txtDisponible = new JTextField();
+        txtDisponible.setBounds(80, 91, 96, 20);
+        contentPane.add(txtDisponible);
+        txtDisponible.setColumns(10);
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(222, 41, 455, 146);
+        contentPane.add(scrollPane);
+
+        table = new JTable();
+        table.setModel(new DefaultTableModel(
+                new Object[][] {
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                        {null, null, null},
+                },
+                new String[] {
+                        "ID", "Descripción", "Disponible"
+                }
+        ));
+        scrollPane.setViewportView(table);
+
+        JButton btnModificar = new JButton("Modificar");
+        btnModificar.setBounds(49, 202, 89, 23);
+        contentPane.add(btnModificar);
+
+        JButton btnIngresar = new JButton("Ingresar");
+        btnIngresar.setBounds(163, 202, 89, 23);
+        contentPane.add(btnIngresar);
+
+        JButton btnBaja = new JButton("Baja");
+        btnBaja.setBounds(280, 202, 89, 23);
+        contentPane.add(btnBaja);
+
+        JButton btnNewButton_3 = new JButton("Volver");
+        btnNewButton_3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                volverAVentanaPrincipal();
+            }
+        });
+        btnNewButton_3.setBounds(400, 202, 89, 23);
+        contentPane.add(btnNewButton_3);
+    }
+
+    private void volverAVentanaPrincipal() {
+        VentanaPrincipalNueva ventanaPrincipal = new VentanaPrincipalNueva();
+        ventanaPrincipal.setVisible(true);
+        dispose();
+    }
+}
+
+
+
+
+
